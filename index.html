@@ -3,32 +3,43 @@
 <head>
 <meta charset="utf-8">
 <title>Drums</title>
-<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="js/abbey-load.js"></script>
+<script src="js/buffer-loader.js"></script>
+<script src="js/init.js"></script>
+<script>
+var RhythmSample={};
+
+RhythmSample.play=function(){
+	function playSound(buffer,time){
+		var source=context.createBufferSource();
+		source.buffer=buffer;source.connect(context.destination);
+		source.noteOn(time);
+	}
+	var kick=BUFFERS.kick;
+	var snare=BUFFERS.snare;
+	var hihat=BUFFERS.hihat;
+	var startTime=context.currentTime+0.100;
+	var tempo=50;
+	var eighthNoteTime=(60/tempo)/2;
+	for(var bar=0;bar<2;bar++){
+		var time=startTime+bar*8*eighthNoteTime;
+		playSound(kick,time);
+		playSound(kick,time+4*eighthNoteTime);
+		playSound(snare,time+2*eighthNoteTime);
+		playSound(snare,time+6*eighthNoteTime);
+		for(var i=0;i<8;++i){playSound(hihat,time+i*eighthNoteTime);}
+	}
+};
+</script>	
+
 </head>
 
 <body>
-<script>
 
-var assets = new AbbeyLoad( [{
-                 'snare': 'audio/snare.mp3',
-                 'bassdrum': 'audio/bassdrum.mp3'
-             }], function (buffers) {
-                // do something with ready to play buffers!
-			//alert("Loaded sounds");
-			assets.playSound(snare);
-});
-	
-	
-
-			 
-</script>	
-
-
+<a href="javascript:void(0)" onClick="RhythmSample.play();">Drummachine test2
 
 
 </body>
 
-Drummachine test
+
 
 </html>
