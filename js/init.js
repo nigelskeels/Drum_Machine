@@ -5,9 +5,9 @@ var context = null;
 
 // An object to track the buffers to load {name: path}
 var BUFFERS_TO_LOAD = {
-  kick: 'audio/snare.mp3',
-  snare: 'audio/bassdrum.mp3',
-  hihat: 'audio/snare2.mp3',
+  kick: 'audio/snare.ogg',
+  snare: 'audio/bassdrum.ogg',
+  hihat: 'audio/snare2.ogg',
 };
 
 // Loads all sound samples into the buffers object.
